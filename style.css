@@ -9,8 +9,8 @@
 *::after,
 *::before {
 	box-sizing: border-box;
-	/* border: 1px dotted white; */
 	font-size: calc(var(--font-size) * 1);
+	/* border: 1px dotted white; */
 }
 
 body {
