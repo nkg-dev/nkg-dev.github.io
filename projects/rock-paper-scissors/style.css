@@ -1,0 +1,839 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@700&family=Outfit&display=swap');
+
+:root {
+	/*! Calculation for --font-size used to size *********************/
+	/*! text, icons, borders, padding, and margins via calc() ********/
+	/*** Calculation courtesy of Michael Riethmuller *****************/
+	/*** https://websemantics.uk/tools/responsive-font-calculator/ ***/
+	--font-size: calc(0.875rem + ((1vw - 0.01rem) * 0.5));
+
+	--font-serious: 'Outfit', Verdana, sans-serif;
+
+	/*** this is a kid's game, font should be fun! ***/
+	--font-fun: 'Grandstander', Arial, sans-serif;
+
+	/*** ~2px ***/
+	--xxxsmall: calc(var(--font-size) * 0.125);
+	/*** ~3px ***/
+	--xxsmall: calc(var(--font-size) * 0.192);
+	/*** ~4px ***/
+	--xsmall: calc(var(--font-size) * 0.25);
+	--medium: calc(var(--font-size) * 0.5);
+	--large: calc(var(--font-size) * 0.75);
+	--xlarge: calc(var(--font-size) * 1);
+	--xxlarge: calc(var(--font-size) * 1.25);
+
+	--size-icon-reg: calc(var(--font-size) * 2);
+	--size-icon-score: calc(var(--font-size) * 1.6);
+
+	--shadow-on: 2px 2px 12px -6px var(--color-one);
+	--shadow-off: 0px 0px 0px 0px var(--color-one);
+
+	--transition-short: 300ms;
+	--transition-long: calc(var(--transition-short) * 2);
+	--transition-xlong: calc(var(--transition-short) * 3);
+}
+
+@media screen and (min-width: 76rem) {
+	:root {
+		--font-size: 1.25rem;
+	}
+}
+
+/*** "sound--is-off" elements will be hidden **/
+/*** when user wants sound on  ***************/
+:root[sound-mode='on'] .sound--is-off {
+	display: none;
+}
+
+/*** "sound--is-on" elements will be hidden **/
+/*** when user wants sound off **************/
+:root[sound-mode='off'] .sound--is-on {
+	display: none;
+}
+
+/*** "light--hidden" elements will be hidden **/
+/*** when the site is set to Light Mode *******/
+:root[color-mode='light'] .light--hidden {
+	display: none;
+}
+
+/*** "dark--hidden" elements will be hidden ***/
+/*** when the site is set to Dark Mode ********/
+:root[color-mode='dark'] .dark--hidden {
+	display: none;
+}
+
+html[color-mode='light'] {
+	--color-one: hsl(283, 75%, 50%);
+	--color-two: hsl(283, 10%, 90%);
+	--color-three: hsl(283, 20%, 10%);
+	--color-four: hsl(103, 75%, 50%);
+}
+
+html[color-mode='dark'] {
+	--color-one: hsl(103, 60%, 50%);
+	--color-two: hsl(103, 20%, 10%);
+	--color-three: hsl(103, 10%, 90%);
+	--color-four: hsl(283, 60%, 50%);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	border-radius: calc(var(--font-size) * 0.5);
+	border-radius: var(--medium);
+	margin: 0;
+
+	color: var(--color-two);
+	font-family: var(--font-fun);
+	font-size: var(--font-size);
+	/*! TODO comment out ⬇︎ before going live */
+	/* border: 1px dotted blue; */
+
+	/*** Rather than abruptly switch between Light ***/
+	/*** and Dark modes, soften with transiton *******/
+	transition: all var(--transition-long) ease-in;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	background-color: var(--color-two);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 100%;
+	margin: 0 0 calc(var(--font-size) * 0.5);
+}
+
+path,
+svg:hover,
+svg {
+	transition: all var(--transition-short) linear;
+}
+
+h1 {
+	padding: calc(var(--font-size) * 0.6) 0 0;
+	text-align: center;
+
+	font-size: calc(var(--font-size) * 2.2);
+}
+
+h2 {
+	margin: 0 0 calc(var(--font-size) * 1.25);
+
+	font-size: calc(var(--font-size) * 1.75);
+}
+
+@media screen and (max-width: 550px) {
+	h1 {
+		font-size: calc(var(--font-size) * 1.75);
+	}
+
+	h2 {
+		font-size: calc(var(--font-size) * 1.5);
+	}
+}
+
+button {
+	cursor: pointer;
+
+	/*** clearing padding, margin, & border ****/
+	/*** for when buttons are icons only *******/
+	padding: 0px;
+	margin: 0px;
+
+	border: none;
+}
+
+/*** Wrapper for all contents on the page, needed  ***/
+/*** to prevent contents from stretching too far *****/
+/*** on wider screens ********************************/
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	padding: calc(var(--font-size) * 0.75);
+	margin: calc(var(--font-size) * 0.5) calc(var(--font-size) * 0.15);
+	max-width: calc(var(--font-size) * 32);
+
+	background-color: var(--color-one);
+	border-radius: var(--large);
+}
+
+/*** Contents between header and footer ******************/
+/*** [game content] **************************************/
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	width: 100%;
+}
+
+@media screen and (max-width: 550px) {
+	main {
+		/*** on phone, move player's buttons ***/
+		/*** to bottom of screen ***************/
+		flex-direction: column-reverse;
+	}
+}
+
+fieldset {
+	margin: calc(var(--font-size) * 1) 0;
+	padding: 0 calc(var(--font-size) * 0.5);
+	width: 100%;
+
+	background-color: var(--color-two);
+	border: none;
+}
+
+legend {
+	/*** Text-align places the legend box ****/
+	/*** in the center of the fieldset! 🤯 ***/
+	text-align: center;
+	padding: calc(var(--font-size) * 0.25) calc(var(--font-size) * 0.5);
+
+	background-color: var(--color-four);
+	border: none;
+}
+
+.computer-section {
+	margin: calc(var(--font-size) * 1) 0 calc(var(--font-size) * 0.25);
+}
+
+/*** Webkit (Safari & iOS) browser issues forces ***/
+/*** need to place contents of LEGEND in DIVs ******/
+/*** in order to prevent wrapping & ****************/
+/*** better vertically align elements 🥴 ***********/
+.player-section__header,
+.computer-section__header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: calc(var(--font-size) * 0.5);
+	width: calc(var(--font-size) * 12);
+
+	color: var(--color-three);
+	font-size: calc(var(--font-size) * 1.125);
+}
+
+/*** icons used in LEGEND tag **********/
+/*** for player & computer FIELDSETs ***/
+/*** also used in Score boxes **********/
+.player-icon,
+.computer-icon {
+	width: var(--size-icon-score);
+	height: var(--size-icon-score);
+
+	fill: var(--color-three);
+}
+
+/*** player-choice contains player-clickable buttons; ***/
+/*** computer-choice contains 'buttons' in 'active' *****/
+/*** state with opacity toggled to 1 as needed by JS ****/
+.player-choice,
+.computer-choice {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: calc(var(--font-size) * 0.6);
+	padding: calc(var(--font-size) * 1) 0;
+}
+
+.player-choice__button,
+.computer-choice__button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: calc(var(--font-size) * 0.25);
+	flex: 1 0 calc(var(--font-size) * 9);
+
+	width: calc(var(--font-size) * 9);
+	padding: calc(var(--font-size) * 0.25) 0;
+
+	border: var(--xsmall) solid var(--color-one);
+}
+
+.player-choice__button {
+	background-color: var(--color-two);
+	box-shadow: var(--shadow-on);
+	color: var(--color-one);
+}
+
+.computer-choice__button {
+	opacity: 0;
+
+	background-color: var(--color-one);
+	box-shadow: var(--shadow-off);
+	color: var(--color-two);
+}
+
+/*** icons for buttons ***/
+.player-choice__button > svg,
+.computer-choice__button > svg {
+	width: var(--size-icon-reg);
+	height: var(--size-icon-reg);
+}
+
+.player-choice__button > svg {
+	fill: var(--color-three);
+}
+
+.computer-choice__button > svg {
+	fill: var(--color-two);
+}
+
+.player-choice__button > div {
+	color: var(--color-three);
+}
+
+/*** text label for buttons ***/
+.player-choice__button > div,
+.computer-choice__button > div {
+	padding: calc(var(--font-size) * 0.25) 0 0;
+
+	font-size: calc(var(--font-size) * 1.25);
+}
+
+/*** used by JavaScript ***/
+.turnedOn {
+	opacity: 1;
+}
+
+/*** Toggled on by JavaScript ***/
+.active {
+	background-color: var(--color-four);
+	border-color: var(--color-four);
+	box-shadow: var(--shadow-off);
+}
+
+/*** on mobile screens, adjust buttons ****/
+/*** to be in column & increase gap to ****/
+/*** help avoid accidental presses ********/
+@media screen and (max-width: 550px) {
+	/*** .player-section undefined outside of mobile ***/
+	.player-section {
+		margin: calc(var(--font-size) * 0.5) 0 0;
+	}
+
+	.computer-section {
+		margin: calc(var(--font-size) * 0.5) 0;
+	}
+
+	.player-choice,
+	.computer-choice {
+		gap: calc(var(--font-size) * 1);
+		padding: calc(var(--font-size) * 1) 0;
+	}
+	.computer-choice {
+		margin: calc(var(--font-size) * 0.5) 0;
+		height: calc(var(--font-size) * 3.9);
+	}
+
+	/*? setting flex-basis to 100% was  */
+	/*? only solution I could find to   */
+	/*? ensure buttons in single column */
+	.player-choice__button,
+	.computer-choice__button {
+		flex-basis: 100%;
+		padding: calc(var(--font-size) * 0.5) 0 calc(var(--font-size) * 0.5);
+	}
+
+	.player-choice__button > div,
+	.computer-choice__button > div {
+		font-size: calc(var(--font-size) * 1.5);
+	}
+
+	/*! if you alter button size/gap in mobile, ***/
+	/*! update calc values for top also ***********/
+	#computerRock,
+	#computerPaper,
+	#computerScissors {
+		position: relative;
+		top: calc(var(--font-size) * -1);
+	}
+
+	#computerPaper {
+		top: calc(calc(var(--font-size) * -3.4) - var(--size-icon-reg));
+	}
+	#computerScissors {
+		top: calc(calc(var(--font-size) * -7.8) - var(--size-icon-reg));
+	}
+}
+
+/***********************************************************/
+/*** Begin Game Play Section *******************************/
+/***********************************************************/
+
+.game-section {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	margin: calc(var(--font-size) * 1) 0;
+	padding: calc(var(--font-size) * 0.6);
+
+	background-color: var(--color-three);
+	border: var(--xxsmall) solid var(--color-three);
+}
+
+.game-section__header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: calc(var(--font-size) * 0.4);
+	padding: calc(var(--font-size) * 0.125) 0;
+}
+
+.game-section__header--label-score,
+.game-section__header--label-rounds {
+	padding: calc(var(--font-size) * 0.25) calc(var(--font-size) * 0.325) 0;
+
+	color: var(--color-three);
+	font-size: calc(var(--font-size) * 1.25);
+}
+
+.game-section__header--label-rounds {
+	font-size: calc(var(--font-size) * 1.1);
+}
+
+/*** icons used in LEGEND tag **********/
+/*** for player & computer FIELDSETs ***/
+.game-section__header--icon {
+	width: var(--size-icon-score);
+	height: var(--size-icon-score);
+
+	fill: var(--color-three);
+}
+
+/*** These are the flex containers holding ***/
+/*** the icon and the numeric score **********/
+.game-section__header--score-box {
+	display: flex;
+	text-align: center;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+	gap: calc(var(--font-size) * 0.25);
+
+	padding: calc(var(--font-size) * 0.125);
+
+	background-color: var(--color-two);
+	border: var(--xxsmall) solid var(--color-four);
+}
+
+/*** Score Area colors, toggled via JavaScript ***/
+/*** including ID value to avoid confusion *******/
+/*** between score DIV wrapper vs Icon ***********/
+#pScore.win,
+#cScore.win {
+	background-color: var(--color-three);
+}
+
+#pScoreIcon.win,
+#cScoreIcon.win {
+	fill: var(--color-two);
+}
+
+/*** Acutal numeric score, updated via JavaScript ***/
+#playerScore,
+#computerScore {
+	margin: auto;
+	height: var(--size-icon-score);
+	width: calc(var(--font-size) * 1.5);
+
+	padding: calc(var(--font-size) * 0.1) calc(var(--font-size) * 0.25) 0;
+
+	color: var(--color-three);
+	font-size: calc(var(--font-size) * 1.6);
+}
+
+#playerScore.win,
+#computerScore.win {
+	color: var(--color-two);
+}
+
+.game-section__game-area {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: calc(var(--font-size) * 0.5);
+	width: 100%;
+
+	color: var(--color-three);
+}
+
+.game-section__game-text {
+	padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 0.5)
+		calc(var(--font-size) * 0.25);
+
+	border: var(--xxsmall) solid var(--color-three);
+	font-size: calc(var(--font-size) * 1.15);
+	line-height: 1.4;
+}
+
+.game-section__game-text.player {
+	background-color: var(--color-four);
+	color: var(--color-three);
+}
+
+.game-section__game-text.computer {
+	background-color: var(--color-one);
+	color: var(--color-two);
+}
+
+.game-section__game-text.reset {
+	background-color: var(--color-three);
+	color: var(--color-two);
+}
+
+#winnerText {
+	display: none;
+	background-color: var(--color-two);
+	color: var(--color-three);
+
+	transition: all var(--transition-short) linear;
+	transition: none;
+}
+
+/******************* Reset Button *******************/
+.reset {
+	align-self: flex-start;
+	padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 1)
+		calc(var(--font-size) * 0.35);
+
+	border: var(--xxxsmall) solid var(--color-two);
+	border-radius: var(--xsmall);
+	background-color: var(--color-three);
+
+	font-size: calc(var(--font-size) * 0.875);
+}
+
+.reset:hover {
+	background-color: var(--color-two);
+	color: var(--color-three);
+}
+
+@media screen and (max-width: 550px) {
+	.reset {
+		padding: calc(var(--font-size) * 1) calc(var(--font-size) * 1)
+			calc(var(--font-size) * 0.75);
+	}
+}
+
+/****************************************************/
+/****************** Code for Modal ******************/
+/****************************************************/
+.modal-reset__container {
+	opacity: 0;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+
+	pointer-events: none;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: hsla(0, 0%, 0%, 0.6);
+	-webkit-backdrop-filter: blur(calc(var(--font-size) * 0.25));
+	backdrop-filter: blur(calc(var(--font-size) * 0.25));
+	border-radius: 0;
+}
+
+.modal-reset__container.show {
+	opacity: 1;
+
+	pointer-events: auto;
+}
+
+.modal-reset {
+	padding: calc(var(--font-size) * 1.5);
+	max-width: calc(var(--font-size) * 25);
+
+	background-color: var(--color-one);
+	box-shadow: var(--shadow-on);
+}
+
+.modal-reset__buttons {
+	display: flex;
+	gap: calc(var(--font-size) * 1.25);
+
+	margin: calc(var(--font-size) * 1.5) 0 0;
+}
+
+.modal-reset__buttons--no,
+.modal-reset__buttons--yes {
+	padding: calc(var(--font-size) * 0.75) calc(var(--font-size) * 1)
+		calc(var(--font-size) * 0.5);
+	width: calc(var(--font-size) * 10);
+
+	background-color: var(--color-one);
+	border: var(--xxsmall) solid var(--color-one);
+	color: var(--color-two);
+}
+
+.modal-reset__buttons--yes {
+	background-color: var(--color-one);
+	border-color: var(--color-two);
+	color: var(--color-two);
+}
+
+.modal-reset__buttons--no:hover,
+.modal-reset__buttons--yes:hover {
+	background-color: var(--color-two);
+	border-color: var(--color-two);
+	color: var(--color-one);
+}
+
+/********* Modal window too big on phones, *********/
+/********* so shrinking it *************************/
+@media screen and (max-width: 550px) {
+	.modal-reset {
+		max-width: calc(var(--font-size) * 20);
+	}
+	.modal-reset__buttons {
+		/** Set Cancel button below Confirm button ****/
+		/** so people who click reset by mistake ******/
+		/** can easily exit out of the process ********/
+		flex-direction: column-reverse;
+		gap: calc(var(--font-size) * 2);
+	}
+	.modal-reset__buttons--no,
+	.modal-reset__buttons--yes {
+		width: 100%;
+	}
+}
+
+/******************************************************/
+/********** Code related to VOLUME toggle *************/
+/******************************************************/
+
+.sound-mode__header {
+	height: var(--size-icon-reg);
+	width: var(--size-icon-reg);
+}
+
+.sound--is-off,
+.sound--is-on {
+	height: var(--size-icon-reg);
+	width: var(--size-icon-reg);
+
+	background-color: var(--color-one);
+	fill: var(--color-two);
+}
+
+.sound--is-on:active,
+.sound--is-off:active,
+.sound--is-on:hover,
+.sound--is-off:hover {
+	background-color: var(--color-two);
+	fill: var(--color-one);
+}
+
+.sound--is-on:active .volume-on,
+.sound--is-on:hover .volume-off,
+.sound--is-on .volume-on,
+.sound--is-off:active .volume-off,
+.sound--is-off:hover .volume-on,
+.sound--is-off .volume-off {
+	display: block;
+
+	transition: all var(--transition-long) linear;
+}
+
+.sound--is-on:hover .volume-on,
+.sound--is-on:active .volume-on,
+.sound--is-on .volume-off,
+.sound--is-off:hover .volume-off,
+.sound--is-off:active .volume-off,
+.sound--is-off .volume-on {
+	display: none;
+}
+
+@media screen and (max-width: 550px) {
+	.sound-mode__header,
+	.sound--is-off,
+	.sound--is-on {
+		height: calc(var(--font-size) * 3);
+		width: calc(var(--font-size) * 3);
+	}
+}
+
+/******************************************************/
+/********** Code related to color-mode swap ***********/
+/******************************************************/
+
+.color-mode__header {
+	height: var(--size-icon-reg);
+	width: var(--size-icon-reg);
+
+	transition: none;
+}
+
+.dark--hidden,
+.light--hidden {
+	height: var(--size-icon-reg);
+	width: var(--size-icon-reg);
+
+	background-color: var(--color-one);
+	fill: var(--color-two);
+
+	transition: all var(--transition-long) linear;
+}
+
+.dark--hidden:hover,
+.light--hidden:hover {
+	background-color: var(--color-three);
+	fill: var(--color-four);
+
+	transition: all var(--transition-long) linear;
+}
+
+.dark--hidden:active,
+.light--hidden:active {
+	background-color: var(--color-one);
+	fill: var(--color-two);
+
+	transition: all var(--transition-long) linear;
+}
+
+@media screen and (max-width: 550px) {
+	.color-mode__header,
+	.dark--hidden,
+	.light--hidden {
+		height: calc(var(--font-size) * 3);
+		width: calc(var(--font-size) * 3);
+	}
+}
+
+/*** everything in the <footer> area including <details> element ***/
+/*** used to link to people who have educated or inspired me *******/
+
+footer,
+footer * {
+	font-family: var(--font-serious);
+	font-size: calc(var(--font-size) * 0.6);
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: calc(var(--font-size) * 32);
+	padding: calc(var(--font-size) * 0.5);
+
+	color: var(--color-one);
+	text-align: center;
+}
+
+footer > p {
+	color: var(--color-one);
+	text-align: center;
+	line-height: 1.6;
+}
+
+details {
+	width: calc(var(--font-size) * 15);
+	margin: calc(var(--font-size) * 0.75) 0 calc(var(--font-size) * 0.75);
+	max-width: 40ch;
+
+	border-radius: var(--xsmall);
+	color: var(--color-two);
+	background-color: var(--color-one);
+}
+
+details > summary {
+	cursor: pointer;
+
+	padding: calc(var(--font-size) * 0.25);
+
+	border: var(--xxsmall) solid var(--color-one);
+	color: var(--color-two);
+	background-color: var(--color-one);
+}
+
+details[open] > summary {
+	color: var(--color-one);
+	background-color: var(--color-two);
+	border-bottom-left-radius: var(--xxsmall);
+	border-bottom-right-radius: var(--xxsmall);
+}
+
+ul {
+	padding: 0 calc(var(--font-size) * 1);
+	list-style-type: none;
+}
+
+li {
+	padding: calc(var(--font-size) * 0.125) calc(var(--font-size) * 0.25)
+		calc(var(--font-size) * 0.2);
+
+	text-align: left;
+}
+
+li:first-of-type {
+	padding-top: calc(var(--font-size) * 0.33);
+}
+
+li:last-of-type {
+	padding-bottom: calc(var(--font-size) * 0.5);
+}
+
+li > hr {
+	border-top: 1px solid var(--color-one);
+}
+
+a,
+a:visited {
+	color: var(--color-two);
+	text-decoration: none;
+	border-radius: var(--xxxsmall);
+	padding: calc(var(--font-size) * 0.067) calc(var(--font-size) * 0.2)
+		calc(var(--font-size) * 0.12);
+}
+
+a:active,
+a:hover {
+	color: var(--color-one);
+	background-color: var(--color-two);
+}
+
+p > a,
+p > a:visited {
+	color: var(--color-one);
+	background-color: none;
+}
+
+p > a:active,
+p > a:hover {
+	color: var(--color-two);
+	background-color: var(--color-one);
+}
+
+@media screen and (max-width: 550px) {
+	footer,
+	footer * {
+		font-size: calc(var(--font-size) * 0.8);
+	}
+}
