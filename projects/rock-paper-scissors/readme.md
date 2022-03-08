@@ -2,7 +2,7 @@
 
 I am progressing thru the Foundations section of [The Odin Project](https://www.theodinproject.com) and this is the first project that I have completed with a user interface.
 
-Per the instructions, it was supposed to be simple GUI -- focus was to be the JavsScript-based game play -- but I got a little extra with my HTML and CSS. _Very extra._ (I suppose my justification is that I had writtwn very little DOM manipulation code, so I was making up for lost time.)
+Per the instructions, it was supposed to be simple GUI -- focus was to be the JavsScript-based game play -- but I got a little extra with my HTML and CSS. _Very extra._ (I suppose my justification is that I had written very little DOM manipulation code, so I was making up for lost time.)
 
 ## Among the things I learned to do:
 
