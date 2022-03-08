@@ -12,7 +12,7 @@ Per the instructions, it was supposed to be simple GUI -- focus was to be the Ja
 
 ---
 
-![Mobile Layout](/projects/rock-paper-scissors/img/Mobile_layout.png)
+![Mobile Layout](/projects/rock-paper-scissors/img/Mobile_Layout.png)
 
 ### Responsve design, including...
 
