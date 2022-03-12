@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap');
+
+:root {
+	/* --font-size: calc(0.875rem + ((1vw - 0.01rem) * 0.5)); */
+	--font-size: 1rem;
+
+	--font-cursive: 'Sansita Swashed', cursive, serif;
+	--font-reg: system-ui, -apple-system, Arial, Helvetica, sans-serif;
+	--color-main: #8b1d1d;
+	--color-accent: #ffec99;
+	--color-gray-light: #adb5bd;
+	--color-gray-dark: #212529;
+	--color-link: #8cf2f2;
+	--color-base-text: #f8f9fa;
+	--color-shadow: hsla(210, 11%, 15%, 0.3);
+}
+
+@media screen and (min-width: 1441px) {
+	:root {
+		--font-size: 1.25rem;
+	}
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	margin-bottom: calc(var(--font-size) * 4);
+
+	font-family: var(--font-reg);
+	font-weight: 400;
+	font-size: calc(var(--font-size) * 1.15);
+
+	background-color: var(--color-main);
+	color: var(--color-base-text);
+}
+
+header {
+	width: calc(var(--font-size) * 62);
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+h1 {
+	padding: calc(var(--font-size) * 1);
+
+	font-family: var(--font-cursive);
+	font-size: calc(var(--font-size) * 3.5);
+
+	color: var(--color-accent);
+	filter: drop-shadow(3px 3px 1px #22262a);
+}
+
+h2 {
+	padding: calc(var(--font-size) * 1);
+
+	font-size: calc(var(--font-size) * 2);
+	font-weight: 700;
+	letter-spacing: 1px;
+
+	color: var(--color-accent);
+}
+
+p {
+	padding: calc(var(--font-size) * 0.75) calc(var(--font-size) * 1);
+}
+
+input {
+	padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 0.75);
+	/*** width value should match the SVG space in the reset modal ***/
+	width: calc(var(--font-size) * 5);
+
+	background-color: var(--color-main);
+	border: none;
+	border-top-right-radius: calc(var(--font-size) * 0.5);
+	border-bottom-right-radius: calc(var(--font-size) * 0.5);
+	color: var(--color-accent);
+	text-align: right;
+
+	font-size: calc(var(--font-size) * 1.25);
+	font-weight: 700;
+}
+
+label {
+	margin: 0 calc(var(--font-size) * 0.5);
+	font-size: calc(var(--font-size) * 1);
+	font-weight: 600;
+	text-align: right;
+
+	color: var(--color-main);
+}
+
+button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: calc(var(--font-size) * 0.75) calc(var(--font-size) * 1);
+	width: 100%;
+
+	font-size: calc(var(--font-size) * 1.15);
+	font-weight: 700;
+
+	background-color: var(--color-accent);
+	border: none;
+	border-radius: calc(var(--font-size) * 0.5);
+	color: var(--color-main);
+
+	cursor: pointer;
+}
+
+button:hover,
+button:active {
+	background-color: var(--color-gray-light);
+	box-shadow: inset 1px 1px 2px 2px var(--color-shadow);
+	color: var(--color-gray-dark);
+}
+
+svg {
+	height: calc(var(--font-size) * 1.5);
+	width: calc(var(--font-size) * 1.5);
+	margin: 0 calc(var(--font-size) * 0.5) 0 0;
+}
+
+footer {
+	text-align: center;
+}
+
+footer p,
+footer a {
+	font-size: calc(var(--font-size) * 0.75);
+	line-height: 1.5;
+}
+
+a,
+a:visited {
+	padding: calc(var(--font-size) * 0.125) calc(var(--font-size) * 0.25);
+
+	border-radius: calc(var(--font-size) * 0.125);
+	color: var(--color-link);
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	background-color: var(--color-link);
+	color: var(--color-main);
+}
+
+details {
+	border: calc(var(--font-size) * 0.1251) solid var(--color-gray-light);
+	border-radius: calc(var(--font-size) * 0.25);
+	padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 1);
+	width: calc(var(--font-size) * 22.5);
+}
+
+summary {
+	font-size: calc(var(--font-size) * 0.75);
+}
+
+details li {
+	font-size: calc(var(--font-size) * 0.75);
+	text-align: left;
+	list-style: none;
+	line-height: 1.75;
+}
+
+/*** Setting width of this element *********/
+/*** is to keep the HEADER balanced ********/
+.btn_holder {
+	width: calc(var(--font-size) * 10);
+}
+
+.main-container {
+	/*** Width and height should be 2 units greater than ***/
+	/*** .square-container to account for shadow ***********/
+	width: calc(var(--font-size) * 62);
+	height: calc(var(--font-size) * 62);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	background-color: var(--color-gray-light);
+	border-radius: calc(var(--font-size) * 2);
+
+	box-shadow: inset 2px 2px 6px 2px var(--color-shadow),
+		inset -2px -2px 6px 2px var(--color-shadow),
+		-2px -2px 4px 4px var(--color-shadow), 2px 2px 4px 4px var(--color-shadow);
+}
+
+.square-container {
+	display: -ms-grid;
+	display: grid;
+	place-content: center;
+
+	/*** Set to approximate 960px wide ********/
+	width: calc(var(--font-size) * 60);
+	height: calc(var(--font-size) * 60);
+
+	background-color: var(--color-gray-light);
+	cursor: pointer;
+}
+
+.sketch-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/************************************************************************/
+/**************************** code for MODAL ****************************/
+/************************************************************************/
+.modal-reset__container {
+	opacity: 0;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+
+	pointer-events: none;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: hsla(0, 0%, 0%, 0.6);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(20px);
+	border-radius: 0;
+}
+
+.modal-reset__container.show {
+	opacity: 1;
+
+	pointer-events: auto;
+}
+
+.modal-reset {
+	padding: calc(var(--font-size) * 1) calc(var(--font-size) * 1.5);
+	width: calc(var(--font-size) * 35);
+
+	background-color: var(--color-main);
+	border-radius: calc(var(--font-size) * 1);
+	box-shadow: 2px 2px 8px 4px var(--color-shadow);
+}
+
+.modal-reset__btn-container {
+	display: flex;
+	justify-content: space-between;
+
+	padding: calc(var(--font-size) * 1.5) calc(var(--font-size) * 1);
+}
+
+.reset-yes,
+.reset-no {
+	width: calc(var(--font-size) * 14);
+	border: calc(var(--font-size) * 0.125) solid var(--color-accent);
+}
+
+.reset-no {
+	background-color: transparent;
+	color: var(--color-accent);
+}
+
+.reset-no:active,
+.reset-yes:active,
+.reset-no:hover,
+.reset-yes:hover {
+	border: calc(var(--font-size) * 0.125) solid transparent;
+}
+
+.modal-reset__input-container {
+	max-width: -moz-fit-content;
+	max-width: fit-content;
+	margin: calc(var(--font-size) * 1.5) calc(var(--font-size) * 1);
+
+	align-self: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: calc(var(--font-size) * 0.125) solid var(--color-accent);
+
+	background-color: var(--color-accent);
+	border-radius: calc(var(--font-size) * 0.5);
+}
+
+.input-corner {
+	height: calc(var(--font-size) * 2.5);
+	width: calc(var(--font-size) * 5);
+	padding: calc(var(--font-size) * 0.25);
+
+	border-top-left-radius: calc(var(--font-size) * 0.5);
+	border-bottom-left-radius: calc(var(--font-size) * 0.5);
+	border: calc(var(--font-size) * 0.125) solid var(--color-main);
+	background-color: var(--color-main);
+	fill: var(--color-accent);
+}
