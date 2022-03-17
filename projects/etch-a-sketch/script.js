@@ -1,5 +1,11 @@
 'use strict';
 
+//*** User should click/press down before drawing **************/
+//*** so we need to capture click/press state ******************/
+let pointerDown = false;
+document.body.onpointerdown = () => (pointerDown = true);
+document.body.onpointerup = () => (pointerDown = false);
+
 function buildGrid() {
 	const sketchArea = document.getElementById('sketchArea');
 	let divsPerSide = document.getElementById('divsPerSide').value;
@@ -16,9 +22,8 @@ function buildGrid() {
 		sketchDiv.classList.add('sketch-div');
 		// let hue = Math.floor(Math.random() * 361);
 		// sketchDiv.style.backgroundColor = `hsl(${hue}, 75%, 50%)`;
-		// sketchDiv.addEventListener('mouseover', letsDraw);
-		// sketchDiv.addEventListener('pointerenter', letsDraw);
 		sketchDiv.addEventListener('pointerover', letsDraw, true);
+		sketchDiv.addEventListener('pointerdown', letsDraw);
 		sketchDiv.style.backgroundColor = 'black';
 		sketchDiv.style.opacity = 0;
 		sketchArea.appendChild(sketchDiv);
@@ -30,7 +35,9 @@ buildGrid();
 //************************************************************/
 //****************** Begin code for DRAWING ******************/
 //************************************************************/
-function letsDraw() {
+function letsDraw(e) {
+	//*** if mouseover but NOT clicked, exit *******************/
+	if (e.type === 'pointerover' && !pointerDown) return;
 	//*** shade adds black to the color ************************/
 	let shade = Number(this.style.getPropertyValue('opacity'));
 

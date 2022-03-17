@@ -248,9 +248,18 @@ hr {
 }
 
 .sketch-div {
+	user-select: none;
+	cursor: pointer;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.sketch-div:active,
+.sketch-div::selection,
+.sketch-div:hover {
+	cursor: pointer;
 }
 
 /************************************************************************/
