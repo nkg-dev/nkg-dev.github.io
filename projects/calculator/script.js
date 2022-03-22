@@ -1,5 +1,3 @@
-'use strict';
-
 const maxDecimalLength = 4;
 
 const INTEGER_FORMATTER = new Intl.NumberFormat('en-US', {
