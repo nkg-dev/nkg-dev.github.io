@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap');
+
+@media (min-width: 18rem) {
+	:root {
+		/** Fluid typeography courtesy of ******************************/
+		/** https://websemantics.uk/tools/responsive-font-calculator/ **/
+		/*! used to calculate padding, border radius, etc., too !***/
+		/* 1rem(16px) @ 18rem(288px) increasing to 1.375rem(22px) @ 90rem(1440px) */
+		--font-size: calc(1rem + ((1vw - 0.18rem) * 0.5208));
+		/* Where: 0.5208 = 100 * font-size_difference / viewport_width_difference */
+		/* Safari resize fix */
+		min-height: 0vw;
+	}
+}
+/* Prevent scaling beyond this breakpoint */
+@media (min-width: 90rem) {
+	:root {
+		--font-size: 1.375rem;
+	}
+}
+
+:root {
+	/** Colors inspired by Open Color *******/
+	/** https://yeun.github.io/open-color/ **/
+	/** (tho adjusted somewhat) *************/
+
+	--gray-9: hsl(210, 11%, 15%);
+	--gray-8: hsl(210, 10%, 23%);
+	--gray-7: hsl(210, 9%, 31%);
+	--gray-5: hsl(210, 11%, 71%);
+	--gray-3: hsl(210, 14%, 89%);
+	--gray-2: hsl(210, 16%, 93%);
+
+	--indigo-7: hsl(228, 81%, 59%);
+	--indigo-5: hsl(228, 94%, 67%);
+	--indigo-3: hsl(228, 100%, 78%);
+
+	/* --orange-5: hsl(29, 100%, 58%); */
+	--orange-5: hsl(27, 77%, 50%);
+	--orange-3: hsl(32, 100%, 74%);
+
+	--font-main: 'Oxanium', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+		Cantarell, Noto Sans, sans-serif;
+
+	--font-alternate: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+		Cantarell, Noto Sans, sans-serif;
+
+	--size-btn-lg: calc(var(--font-size) * 4);
+	--size-btn-md: calc(var(--font-size) * 2.5);
+	--size-btn-sm: calc(var(--font-size) * 2);
+	--size-btn-xs: calc(var(--font-size) * 1.75);
+
+	--size-spacing-xl: calc(var(--font-size) * 1);
+	--size-spacing-lg: calc(var(--font-size) * 0.75);
+	--size-spacing-md: calc(var(--font-size) * 0.5);
+	--size-spacing-sm: calc(var(--font-size) * 0.375);
+	--size-spacing-xs: calc(var(--font-size) * 0.25);
+	--size-spacing-xxs: calc(var(--font-size) * 0.125);
+
+	--transition-time-short: 40ms;
+	--transition-time-med: 160ms;
+	--transition-time-long: 750ms;
+}
+
+/*** "light--hidden" elements will be hidden **/
+/*** when the site is set to Light Mode *******/
+:root[data-theme='light'] .light--hidden {
+	display: none;
+}
+
+/*** "dark--hidden" elements will be hidden ***/
+/*** when the site is set to Dark Mode ********/
+:root[data-theme='dark'] .dark--hidden {
+	display: none;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+	font-family: var(--font-main);
+	font-weight: 700;
+}
+
+html[data-theme='light'] {
+	--color-bg-body: var(--gray-2);
+	--color-bg-main: var(--indigo-5);
+	--color-bg-readout: var(--gray-7);
+	--color-bg-tooltip: var(--gray-3);
+	--color-bg-num-btn: var(--gray-3);
+	--color-bg-oper-btn: var(--orange-3);
+	--color-bg-func-btn: var(--indigo-3);
+
+	--color-text-1: var(--gray-8);
+	--color-text-2: var(--gray-2);
+	--color-text-3: var(--indigo-3);
+}
+
+html[data-theme='dark'] {
+	--color-bg-body: var(--gray-9);
+	--color-bg-main: var(--indigo-7);
+	--color-bg-readout: var(--gray-5);
+	--color-bg-tooltip: var(--gray-7);
+	--color-bg-num-btn: var(--gray-7);
+	--color-bg-oper-btn: var(--orange-5);
+	--color-bg-func-btn: var(--indigo-5);
+
+	--color-text-1: var(--gray-3);
+	--color-text-2: var(--gray-9);
+	--color-text-3: var(--indigo-7);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	background-color: var(--color-bg-body);
+
+	transition: all var(--transition-time-long) ease;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+main {
+	margin: var(--size-spacing-xl);
+	padding: var(--size-spacing-lg);
+	border-radius: var(--size-spacing-sm);
+	background-color: var(--color-bg-main);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-spacing-lg) 0;
+}
+
+svg {
+	background-color: inherit;
+	stroke: var(--color-text-1);
+	stroke-width: 0;
+}
+
+button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px;
+
+	height: var(--size-btn-lg);
+
+	cursor: pointer;
+	outline: none;
+	border: none;
+
+	background-color: var(--color-bg-num-btn);
+	border-radius: var(--size-spacing-xs);
+	fill: var(--color-text-1);
+
+	transition: all var(--transition-time-short);
+}
+
+button.operator {
+	background-color: var(--color-bg-oper-btn);
+}
+
+button.function {
+	background-color: var(--color-bg-func-btn);
+}
+
+button > svg {
+	height: var(--size-btn-lg);
+	width: var(--size-btn-lg);
+	border-radius: inherit;
+	stroke-width: 0px;
+}
+
+button.operator > svg,
+button.function > svg {
+	height: var(--size-btn-md);
+	width: var(--size-btn-md);
+}
+
+button.operator > svg {
+	stroke: var(--color-text-1);
+	stroke-width: 1px;
+}
+
+button.active {
+	background-color: var(--color-text-1);
+}
+
+button.active > svg {
+	stroke: var(--color-text-2);
+	fill: var(--color-text-2);
+	pointer-events: none;
+}
+
+.buttons-container {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(4, var(--size-btn-lg));
+	grid-template-rows: repeat(5, var(--size-btn-lg));
+	gap: var(--size-spacing-lg);
+}
+
+.header-svg {
+	height: var(--size-btn-xs);
+	width: var(--size-btn-xs);
+	background-color: inherit;
+	stroke-width: 0px;
+}
+
+.header-svg:active {
+	fill: inherit;
+	fill: var(--color-text-2);
+}
+
+.header-btn {
+	height: var(--size-btn-sm);
+	width: var(--size-btn-sm);
+	padding: var(--size-spacing-xxs);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--size-spacing-xs);
+
+	background-color: inherit;
+}
+
+.header-btn:active {
+	background-color: inherit;
+}
+
+.hover-only {
+	opacity: 0;
+}
+
+.heading {
+	margin: var(--size-spacing-md) var(--size-spacing-xxs) var(--size-spacing-xxs);
+	color: var(--color-text-2);
+	font-size: var(--size-btn-sm);
+}
+
+.readout {
+	display: flex;
+	flex-direction: column;
+
+	background-color: var(--color-bg-readout);
+	border-radius: var(--size-spacing-sm);
+	padding: 0;
+
+	max-width: calc(var(--font-size) * 18.25);
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.previous-operand,
+.current-operand {
+	letter-spacing: var(--size-spacing-xxs);
+	text-align: right;
+}
+
+.previous-operand {
+	color: var(--color-text-3);
+	font-size: calc(var(--font-size) * 1.125);
+	min-height: calc(var(--font-size) * 1.375);
+	margin: var(--size-spacing-xs) var(--size-spacing-md) 0;
+}
+
+.current-operand {
+	color: var(--color-text-2);
+	font-size: calc(var(--font-size) * 2.5);
+	min-height: calc(var(--font-size) * 3.25);
+	/** Setting bottom margin to NEGATIVE value to decrease unsightly extra space */
+	margin: 0 var(--size-spacing-md) calc(var(--font-size) * -0.25);
+}
+
+.double-wide {
+	grid-column: span 2;
+}
+
+.light--hidden > svg,
+.dark--hidden > svg {
+	fill: var(--color-text-1);
+	border-radius: inherit;
+}
+
+.tool-tip {
+	position: relative;
+}
+
+.tool-tip::before {
+	--scale: 0;
+	--color-text-tooltip: var(--color-text-1);
+
+	content: attr(data-tooltip);
+
+	position: absolute;
+	top: var(--size-btn-xs);
+	padding: var(--size-spacing-md) var(--size-spacing-md);
+	min-width: 13ch;
+	max-width: 18ch;
+
+	font-family: var(--font-alternate);
+	font-size: calc(var(--font-size) * 0.625);
+	line-height: 1.5;
+
+	color: var(--color-text-tooltip);
+	background-color: var(--color-bg-tooltip);
+	border-radius: var(--size-spacing-xs);
+
+	transform: translateY(var(--size-spacing-md)) scale(var(--scale));
+	transform-origin: top center;
+
+	transition: transform var(--transition-time-med) ease;
+}
+
+/*** everything in the <footer> area including <details> element ***/
+/*** used to link to people who have educated or inspired me *******/
+
+footer,
+footer * {
+	font-family: var(--font-alternate);
+	font-size: calc(var(--font-size) * 0.6);
+	font-weight: 400;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: calc(var(--font-size) * 18);
+	padding: calc(var(--font-size) * 0.5);
+
+	color: var(--color-text-1);
+	text-align: center;
+}
+
+footer > p {
+	color: var(--color-text-1);
+	text-align: center;
+	line-height: 1.6;
+}
+
+details {
+	width: calc(var(--font-size) * 18);
+	margin: calc(var(--font-size) * 0.75) 0 calc(var(--font-size) * 0.75);
+
+	border-radius: var(--size-spacing-xs);
+	color: var(--color-text-1);
+	background-color: var(--color-bg-num-btn);
+}
+
+details > summary {
+	cursor: pointer;
+
+	width: 100%;
+	padding: var(--size-spacing-xs);
+
+	border: var(--size-spacing-xs) solid var(--color-bg-num-btn);
+	border-radius: var(--size-spacing-xs);
+	color: var(--color-text-1);
+	background-color: var(--color-bg-num-btn);
+}
+
+details[open] > summary {
+	color: var(--color-text-1);
+	background-color: var(--color-bg-body);
+	border-top-left-radius: var(--size-spacing-sm);
+	border-top-right-radius: var(--size-spacing-sm);
+}
+
+ul {
+	padding: 0 var(--size-spacing-xl);
+	list-style-type: none;
+}
+
+li {
+	padding: calc(var(--font-size) * 0.125) calc(var(--font-size) * 0.25)
+		calc(var(--font-size) * 0.2);
+
+	text-align: left;
+}
+
+li:first-of-type {
+	padding-top: calc(var(--font-size) * 0.33);
+}
+
+li:last-of-type {
+	padding-bottom: calc(var(--font-size) * 0.5);
+}
+
+li > hr {
+	border-top: 1px solid var(--color-text-1);
+	border-bottom: none;
+}
+
+a,
+a:visited {
+	color: var(--color-text-1);
+	text-decoration: none;
+	border-radius: var(--size-spacing-xxs);
+	padding: calc(var(--font-size) * 0.067) calc(var(--font-size) * 0.2)
+		calc(var(--font-size) * 0.12);
+}
+
+a:active,
+a:hover {
+	color: var(--color-text-1);
+	background-color: var(--color-bg-oper-btn);
+}
+
+@media screen and (max-width: 550px) {
+	footer,
+	footer * {
+		font-size: calc(var(--font-size) * 0.8);
+	}
+}
+
+/*** If NOT on a mobile device, turn on hover effects **************/
+/*** for buttons that are not links off site ***********************/
+
+@media (hover: hover) {
+	button:hover {
+		background-color: var(--color-text-1);
+	}
+	button:hover > svg {
+		stroke: var(--color-text-2);
+		fill: var(--color-text-2);
+		pointer-events: none;
+	}
+	.header-svg:hover {
+		fill: inherit;
+		fill: var(--color-text-2);
+	}
+	.header-btn:hover {
+		background-color: inherit;
+	}
+	.tool-tip:hover::before {
+		--scale: 1;
+	}
+	.hover-only {
+		opacity: 1;
+		cursor: default;
+	}
+}
