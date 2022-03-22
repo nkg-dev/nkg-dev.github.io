@@ -25,7 +25,7 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<link rel="manifest" href="site.webmanifest" />
 		<title>Calculator</title>
-		<link rel="stylesheet" href="/style.css" />
+		<link rel="stylesheet" href="style.css" />
 		<script>
 			// retrieves data-theme preference from localStorage
 			if (
@@ -36,6 +36,7 @@
 				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		</script>
+		<script src="calc.js" defer></script>
 	</head>
 	<body>
 		<main>
@@ -423,6 +424,5 @@
 				</ul>
 			</details>
 		</footer>
-		<!-- <script src="/calc.js" defer></script> -->
 	</body>
 </html>
